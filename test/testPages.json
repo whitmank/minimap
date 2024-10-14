@@ -1,0 +1,98 @@
+[
+    {
+      "window": "Window 1",
+      "tabs": [
+        {
+          "title": "The Densest City In The World Had a Strange Secret... - YouTube",
+          "url": "https://www.youtube.com/watch?v=hoNclh1K_zY"
+        },
+        {
+          "title": "Rhizome (philosophy) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Rhizome_(philosophy)"
+        },
+        {
+          "title": "Concept Mapping in the Age of Deleuze: Fresh Perspectives and New Challenges",
+          "url": "https://files.eric.ed.gov/fulltext/EJ1250497.pdf"
+        },
+        {
+          "title": "Deleuze and Guattari - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Deleuze_and_Guattari"
+        },
+        {
+          "title": "Deleuze & Guattari's A Thousand Plateaus Part 4 by John David Ebert 1/2 - YouTube",
+          "url": "https://www.youtube.com/watch?v=tUS75K-j78k&list=PL45CC899A2941BF33&index=9"
+        }
+      ]
+    },
+    {
+      "window": "Window 2",
+      "tabs": [
+        {
+          "title": "neo4j/neo4j: Graphs for Everyone",
+          "url": "https://github.com/neo4j/neo4j"
+        },
+        {
+          "title": "Get started with Neo4j - Neo4j Documentation",
+          "url": "https://neo4j.com/docs/getting-started/"
+        },
+        {
+          "title": "Property Graphs | GraphAcademy",
+          "url": "https://graphacademy.neo4j.com/courses/neo4j-fundamentals/2-property-graphs/"
+        },
+        {
+          "title": "Using Neo4j from Go - Getting Started",
+          "url": "https://neo4j.com/docs/getting-started/languages-guides/neo4j-go/"
+        },
+        {
+          "title": "Build applications with Neo4j and JavaScript - Neo4j JavaScript Driver Manual",
+          "url": "https://neo4j.com/docs/javascript-manual/current/"
+        }
+      ]
+    },
+    {
+      "window": "Window 3",
+      "tabs": [
+        {
+          "title": "jacomyal/sigma.js: A JavaScript library aimed at visualizing graphs of thousands of nodes and edges",
+          "url": "https://github.com/jacomyal/sigma.js"
+        },
+        {
+          "title": "Core library / Features showcases - Events ⋅ Storybook",
+          "url": "https://www.sigmajs.org/storybook/?path=/story/events--story"
+        },
+        {
+          "title": "How to visualize Neo4j Graphs using D3.js and HTML Canvas",
+          "url": "https://www.515tech.com/post/visualize-neo4j-graphs-using-d3-html-canvas"
+        },
+        {
+          "title": "How to use Sigmajs to display your graph ? | by Benoît Simard | Neo4j Developer Blog | Medium",
+          "url": "https://medium.com/neo4j/how-to-use-sigmajs-to-display-your-graph-3eedd75275bb"
+        },
+        {
+          "title": "javascript - Display neo4j node properties with Sigma.js - Stack Overflow",
+          "url": "https://stackoverflow.com/questions/31920450/display-neo4j-node-properties-with-sigma-js"
+        },
+        {
+          "title": "Using Sigma.js with Neo4j | Max De Marzi",
+          "url": "https://maxdemarzi.com/2012/04/12/using-sigma-js-with-neo4j/"
+        }
+      ]
+    },
+    {
+      "window": "Window 4",
+      "tabs": [
+        {
+          "title": "{Transition Chords} & Contemporary Japanese Music - [Kashiwa, Kondo, et. al.] - YouTube",
+          "url": "https://www.youtube.com/watch?v=OsCHcAe3GNQ&t=1s"
+        },
+        {
+          "title": "The Chopin Method: Piano lesson 7. Playing two keys sequentially. - YouTube",
+          "url": "https://www.youtube.com/watch?v=kbsXBkSiR0M&list=PLsupj_-zh7TDZc2jQX3YqA6SZgBKTuZhe&index=2"
+        },
+        {
+          "title": "How Tool Used Math to Create \"Lateralus\" - YouTube",
+          "url": "https://www.youtube.com/watch?v=uOHkeH2VaE0"
+        }
+      ]
+    }
+  ]

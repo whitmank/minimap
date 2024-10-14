@@ -1,0 +1,26 @@
+{
+  "name": "minimap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "author": "",
+  "license": "ISC",
+  
+  "dependencies": {
+    "graphology": "^0.25.4",
+    "sigma": "^3.0.0-beta.33"
+  },
+  "devDependencies": {
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
+}

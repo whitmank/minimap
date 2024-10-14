@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Mini Map",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "browsingData",
+        "windows"
+    ],
+    "chrome_url_overrides": {
+        "newtab": "/src/sigmaEx.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    }
+}

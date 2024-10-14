@@ -1,0 +1,10 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+
+# Webpack bundle
+dist/bundle.js
+dist/bundle.js.map
+

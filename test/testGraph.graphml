@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <graph id="TabsGraph" edgedefault="directed">
+
+    <!-- Nodes -->
+    <node id="Window1"/>
+    <node id="Window2"/>
+    <node id="Window3"/>
+    <node id="Window4"/>
+
+    <!-- Tabs for Window 1 -->
+    <node id="Window1_Tab1" title="The Densest City In The World Had a Strange Secret... - YouTube" url="https://www.youtube.com/watch?v=hoNclh1K_zY"/>
+    <node id="Window1_Tab2" title="Rhizome (philosophy) - Wikipedia" url="https://en.wikipedia.org/wiki/Rhizome_(philosophy)"/>
+    <node id="Window1_Tab3" title="Concept Mapping in the Age of Deleuze" url="https://files.eric.ed.gov/fulltext/EJ1250497.pdf"/>
+    <node id="Window1_Tab4" title="Deleuze and Guattari - Wikipedia" url="https://en.wikipedia.org/wiki/Deleuze_and_Guattari"/>
+    <node id="Window1_Tab5" title="Deleuze &amp; Guattari's A Thousand Plateaus Part 4" url="https://www.youtube.com/watch?v=tUS75K-j78k&amp;list=PL45CC899A2941BF33&amp;index=9"/>
+
+    <!-- Tabs for Window 2 -->
+    <node id="Window2_Tab1" title="neo4j/neo4j: Graphs for Everyone" url="https://github.com/neo4j/neo4j"/>
+    <node id="Window2_Tab2" title="Get started with Neo4j" url="https://neo4j.com/docs/getting-started/"/>
+    <node id="Window2_Tab3" title="Property Graphs | GraphAcademy" url="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/2-property-graphs/"/>
+    <node id="Window2_Tab4" title="Using Neo4j from Go" url="https://neo4j.com/docs/getting-started/languages-guides/neo4j-go/"/>
+    <node id="Window2_Tab5" title="Build applications with Neo4j and JavaScript" url="https://neo4j.com/docs/javascript-manual/current/"/>
+
+    <!-- Tabs for Window 3 -->
+    <node id="Window3_Tab1" title="jacomyal/sigma.js: A JavaScript library" url="https://github.com/jacomyal/sigma.js"/>
+    <node id="Window3_Tab2" title="Core library / Features showcases" url="https://www.sigmajs.org/storybook/?path=/story/events--story"/>
+    <node id="Window3_Tab3" title="How to visualize Neo4j Graphs using D3.js" url="https://www.515tech.com/post/visualize-neo4j-graphs-using-d3-html-canvas"/>
+    <node id="Window3_Tab4" title="How to use Sigmajs to display your graph" url="https://medium.com/neo4j/how-to-use-sigmajs-to-display-your-graph-3eedd75275bb"/>
+    <node id="Window3_Tab5" title="Display neo4j node properties with Sigma.js" url="https://stackoverflow.com/questions/31920450/display-neo4j-node-properties-with-sigma-js"/>
+    <node id="Window3_Tab6" title="Using Sigma.js with Neo4j" url="https://maxdemarzi.com/2012/04/12/using-sigma-js-with-neo4j/"/>
+
+    <!-- Tabs for Window 4 -->
+    <node id="Window4_Tab1" title="{Transition Chords} &amp; Contemporary Japanese Music" url="https://www.youtube.com/watch?v=OsCHcAe3GNQ&amp;t=1s"/>
+    <node id="Window4_Tab2" title="The Chopin Method: Piano lesson 7" url="https://www.youtube.com/watch?v=kbsXBkSiR0M&amp;list=PLsupj_-zh7TDZc2jQX3YqA6SZgBKTuZhe&amp;index=2"/>
+    <node id="Window4_Tab3" title="How Tool Used Math to Create 'Lateralus'" url="https://www.youtube.com/watch?v=uOHkeH2VaE0"/>
+
+    <!-- Edges -->
+    <edge source="Window1" target="Window1_Tab1"/>
+    <edge source="Window1" target="Window1_Tab2"/>
+    <edge source="Window1" target="Window1_Tab3"/>
+    <edge source="Window1" target="Window1_Tab4"/>
+    <edge source="Window1" target="Window1_Tab5"/>
+
+    <edge source="Window2" target="Window2_Tab1"/>
+    <edge source="Window2" target="Window2_Tab2"/>
+    <edge source="Window2" target="Window2_Tab3"/>
+    <edge source="Window2" target="Window2_Tab4"/>
+    <edge source="Window2" target="Window2_Tab5"/>
+
+    <edge source="Window3" target="Window3_Tab1"/>
+    <edge source="Window3" target="Window3_Tab2"/>
+    <edge source="Window3" target="Window3_Tab3"/>
+    <edge source="Window3" target="Window3_Tab4"/>
+    <edge source="Window3" target="Window3_Tab5"/>
+    <edge source="Window3" target="Window3_Tab6"/>
+
+    <edge source="Window4" target="Window4_Tab1"/>
+    <edge source="Window4" target="Window4_Tab2"/>
+    <edge source="Window4" target="Window4_Tab3"/>
+
+  </graph>
+</graphml>
