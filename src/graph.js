@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     const windows = await chrome.windows.getAll({ "populate": true });
     const xml = generateMapGraph(windows);
 
-    var graphml = require('graphology-graphml');
-    var graph = graphml.parse(Graph, xml);
+    const graphml = require('graphology-graphml');
+    const graph = graphml.parse(Graph, xml);
 
     random.assign(graph)
     const layout = new ForceSupervisor(graph, {maxIterations: 5});
