@@ -11,7 +11,6 @@ const result = await esbuild.build({
     platform: "browser",
     target:"es2023",
     sourcemap:true,
-    minify:true,
     treeShaking:true,
 });
 
