@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "dev": "deno run --watch src/deno/main.ts",
+    "run": "deno run src/deno/main.ts",
+    "bundle": "deno run --allow-run --allow-env --allow-read --allow-write --allow-net bundle.js"
+  },
+  "imports": {
+    "sigma": "npm:sigma",
+    "graphology": "npm:graphology",
+    "graphology-layout/random": "npm:graphology-layout/random",
+    "graphology-layout-force/worker": "npm:graphology-layout-force/worker",
+    "graphology-graphml": "npm:graphology-graphml",
+    "xmlbuilder2": "npm:xmlbuilder2",
+    "pretty-data": "npm:pretty-data"
+  }
+}

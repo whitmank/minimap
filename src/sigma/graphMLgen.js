@@ -1,5 +1,5 @@
-import { create } from 'npm:xmlbuilder2';
-import { pd }     from 'npm:pretty-data';
+import { create } from 'xmlbuilder2';
+import { pd }     from 'pretty-data';
 
 
 export function generateMapGraph(windowsArray) {
