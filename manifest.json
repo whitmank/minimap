@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Mini Map",
+    "name": "Mini Map - NODE",
     "version": "1.0",
     "permissions": [
         "activeTab",
@@ -11,7 +11,7 @@
         "newtab": "/src/chrome/map.html"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "./src/chrome/background.js"
     },
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'self'"
