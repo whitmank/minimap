@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(230, 230, 230);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 52px);
+    height: calc(100vh - 52px);
+    background-color: rgb(229, 229, 229);
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 20px;  
+    justify-content: center;
+    align-items: center;
+}
