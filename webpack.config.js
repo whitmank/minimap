@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/graph.js',
+  entry: './src/sigma/graph.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'graph.bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   mode: 'development',
   devtool: 'source-map'
-};
+};``

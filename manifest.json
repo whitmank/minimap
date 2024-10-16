@@ -8,7 +8,7 @@
         "windows"
     ],
     "chrome_url_overrides": {
-        "newtab": "/src/map.html"
+        "newtab": "/src/chrome/map.html"
     },
     "background": {
         "service_worker": "background.js"
