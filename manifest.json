@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Mini Map",
+    "name": "Mini Map - DENO",
     "version": "1.0",
     "permissions": [
         "windows",
