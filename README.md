@@ -1,4 +1,4 @@
-# Mini Map — A map for your browser.
+# Mini Map — a map for your browser.
 
 This is a chrome extension that provides additional navigation and organizational features. 
 
