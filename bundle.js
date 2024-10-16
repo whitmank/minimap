@@ -13,7 +13,6 @@ const result = await esbuild.build({
     sourcemap:true,
     minify:true,
     treeShaking:true,
-    external: ['events']
 });
 
 esbuild.stop();
