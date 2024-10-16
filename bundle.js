@@ -4,8 +4,8 @@ import { denoPlugins  } from "jsr:@luca/esbuild-deno-loader";
 
 const result = await esbuild.build({
     plugins: [...denoPlugins()],
-    entryPoints: ["../src/sigma/graph.js"],
-    outfile: "../dist/graph.bundle.js",
+    entryPoints: ["./src/sigma/graph.js"],
+    outfile: "./dist/graph.bundle.js",
     bundle: true,
     format: "esm",
     platform: "browser",
@@ -13,6 +13,7 @@ const result = await esbuild.build({
     sourcemap:true,
     minify:true,
     treeShaking:true,
+    external: ['events']
 });
 
 esbuild.stop();
