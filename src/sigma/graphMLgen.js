@@ -1,5 +1,6 @@
-import { create } from 'xmlbuilder2';
-import { pd }     from 'pretty-data';
+
+import { create } from 'xmlbuilder2'; // For building graphML
+import { pd }     from 'pretty-data'; // is this used?
 
 
 export function generateMapGraph(windowsArray) {

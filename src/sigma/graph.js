@@ -16,5 +16,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     layout.start();
 
     const container = document.getElementById("container");
+    // Create new Sigma instance (source graph, html container element to put it in)
     const sigmaInstance = new Sigma(graph, container);
 });
