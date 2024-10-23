@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Mini Map - NODE",
+    "name": "Mini Map - DEV",
     "version": "1.0",
     "permissions": [
         "activeTab",
@@ -8,7 +8,7 @@
         "windows"
     ],
     "chrome_url_overrides": {
-        "newtab": "/src/chrome/map.html"
+        "bookmarks": "/src/chrome/map.html"
     },
     "background": {
         "service_worker": "./src/chrome/background.js"
