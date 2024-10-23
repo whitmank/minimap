@@ -2,6 +2,7 @@
 import { create } from 'xmlbuilder2'; // For building graphML
 import { pd }     from 'pretty-data'; // is this used?
 
+export const WINDOW_SIZE = 20;
 
 export function generateMapGraph(windowsArray) {
     // Create root element
@@ -40,14 +41,14 @@ function populateWindowGraph(graph, window) {
     // Create the node for the window itself
     graph.ele('node').att('id', winID)
         .ele('data').att('key', 'l0').txt(`Window ${winID}`).up()
-        .ele('data').att('key', 'l2').txt('20').up()
+        .ele('data').att('key', 'l2').txt(WINDOW_SIZE).up()
     .up();
 
     // Create nodes and edges for each tab
     for (let i = 0; i < tabs.length; i++) {
         // Create a node representing a tab
         const tab = tabs[i];
-        const nodeID = `w${winID}t${i}`;
+        const nodeID = `${tab.id}`;
         const node = graph.ele('node').att('id', nodeID);
         
         // Set the node's title
