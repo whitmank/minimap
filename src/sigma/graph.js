@@ -1,8 +1,12 @@
-import { WINDOW_SIZE, generateMapGraph } from './graphMLgen.js'
+import { generateMapGraph } from './graphMLgen.js'
 import { Sigma } from 'sigma';
 import { Graph } from 'graphology';
 import random from 'graphology-layout/random';
 import ForceSupervisor from 'graphology-layout-force/worker';
+
+function moveTabToWindow(tabId, windowId) {
+    // TODO
+}
 
 // Calculates Euclidean distance between two points in a graphology graph
 function dist(graph, uId, vId) {
@@ -19,11 +23,11 @@ function getNearestWinNode(graph, tabNode) {
     // Gets the node ids of every window node
     // Achieved via filtering for nodes which have the size attribute equal to the imported window node size
     // This is likely not the best way to do this, but it was pedagogically useful and avoids storage 
-    const windowNodes = graph.filterNodes((node, attributes) => { return (attributes.size == WINDOW_SIZE); });
+    const windowNodes = graph.filterNodes((_, attributes) => { return (attributes.chromeType == 'window'); });
 
     // Find the closest window node to the given tab node
     // Also likely not the best way to do this
-    let closest_dist = 100000000;
+    let closest_dist = Number.MAX_SAFE_INTEGER;
     let closest_win_node = tabNode;
 
     for (const winNode of windowNodes) {
@@ -131,6 +135,9 @@ document.addEventListener("DOMContentLoaded", async function() {
             // Create a new edge from the closest window node to the dragged node
             const newWinNode = getNearestWinNode(graph, draggedNode);
             graph.addEdge(newWinNode, draggedNode);
+
+            // Reassign the tab to its new window
+            moveTabToWindow(draggedNode, newWinNode);
         }
 
         // Reset state info
