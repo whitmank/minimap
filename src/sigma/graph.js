@@ -5,7 +5,7 @@ import random from 'graphology-layout/random';
 import ForceSupervisor from 'graphology-layout-force/worker';
 
 function moveTabToWindow(tabId, windowId) {
-    // TODO
+    chrome.tabs.move([parseInt(tabId)], { index: 0, windowId: parseInt(windowId) });
 }
 
 // Calculates Euclidean distance between two points in a graphology graph
@@ -21,12 +21,9 @@ function dist(graph, uId, vId) {
 // Gets the id of the closest window node to the given node (presumably a tab node)
 function getNearestWinNode(graph, tabNode) {
     // Gets the node ids of every window node
-    // Achieved via filtering for nodes which have the size attribute equal to the imported window node size
-    // This is likely not the best way to do this, but it was pedagogically useful and avoids storage 
     const windowNodes = graph.filterNodes((_, attributes) => { return (attributes.chromeType == 'window'); });
 
     // Find the closest window node to the given tab node
-    // Also likely not the best way to do this
     let closest_dist = Number.MAX_SAFE_INTEGER;
     let closest_win_node = tabNode;
 
