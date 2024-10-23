@@ -1,4 +1,6 @@
+
 import { create } from 'xmlbuilder2'; // For building graphML
+import { pd }     from 'pretty-data'; // is this used?
 
 export function generateGraphData(windowsArray) {
     // Create root element
@@ -15,6 +17,8 @@ export function generateGraphData(windowsArray) {
         .ele('key').att('id', 'l1').att('for', 'node').att('attr.name', 'url').att('attr.type', 'string').up()
         // Add graphML attribute for node (tab) size
         .ele('key').att('id', 'l2').att('for', 'node').att('attr.name', 'size').att('attr.type', 'string').up()
+        // Add graphML attribute for node type
+        .ele('key').att('id', 'l3').att('for', 'node').att('attr.name', 'chromeType').att('attr.type', 'string').up()
 
     // Create a graph for each window
     for (let i = 0; i < windowsArray.length; i++) {
@@ -38,13 +42,14 @@ function populateWindowGraph(graph, window) {
     graph.ele('node').att('id', winID)
         .ele('data').att('key', 'l0').txt(`Window ${winID}`).up()
         .ele('data').att('key', 'l2').txt('20').up()
+        .ele('data').att('key', 'l3').txt('window').up()
     .up();
 
     // Create nodes and edges for each tab
     for (let i = 0; i < tabs.length; i++) {
         // Create a node representing a tab
         const tab = tabs[i];
-        const nodeID = `w${winID}t${i}`;
+        const nodeID = `${tab.id}`;
         const node = graph.ele('node').att('id', nodeID);
         
         // Set the node's title
@@ -61,6 +66,11 @@ function populateWindowGraph(graph, window) {
         const size = node.ele('data');
         size.att('key', 'l2');
         size.txt('10');
+
+        // Set the node's type
+        const type = node.ele('data');
+        type.att('key', 'l3');
+        type.txt('node');
 
         // Close the node
         node.up();
