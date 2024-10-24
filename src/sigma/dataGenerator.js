@@ -2,7 +2,7 @@
 import { create } from 'xmlbuilder2'; // For building graphML
 import { pd }     from 'pretty-data'; // is this used?
 
-export function generateMapGraph(windowsArray) {
+export function generateGraphData(windowsArray) {
     // Create root element
     const root = create({
         encoding: 'UTF-8',
