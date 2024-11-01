@@ -19,6 +19,8 @@ export function generateGraphData(windowsArray) {
         .ele('key').att('id', 'l2').att('for', 'node').att('attr.name', 'size').att('attr.type', 'string').up()
         // Add graphML attribute for node type
         .ele('key').att('id', 'l3').att('for', 'node').att('attr.name', 'chromeType').att('attr.type', 'string').up()
+       // Add graphML attribute for being hidden 
+        .ele('key').att('id', 'l4').att('for', 'node').att('attr.name', 'hidden').att('attr.type', 'boolean').up()
 
     // Create a graph for each window
     for (let i = 0; i < windowsArray.length; i++) {
@@ -43,6 +45,7 @@ function populateWindowGraph(graph, window) {
         .ele('data').att('key', 'l0').txt(`Window ${winID}`).up()
         .ele('data').att('key', 'l2').txt('20').up()
         .ele('data').att('key', 'l3').txt('window').up()
+        .ele('data').att('key', 'l4').txt('true').up()
     .up();
 
     // Create nodes and edges for each tab
@@ -79,6 +82,7 @@ function populateWindowGraph(graph, window) {
         const edge = graph.ele('edge');
         edge.att('source', winID);
         edge.att('target', nodeID);
+
         edge.up();
     }
 }

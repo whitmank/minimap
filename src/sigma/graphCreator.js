@@ -72,6 +72,9 @@ export async function createGraph(data, element) {
     // State info
     let draggedNode = null;
     let isDragging = false;
+    // Defaults to whatever tab is currently active. If multiple windows, takes the first
+    const firstTab = await chrome.tabs.query({ active: true });
+    let activeTab = firstTab[0].id;
 
     // When a node is double clicked 
     // This does not override the single click [fix?]
@@ -95,12 +98,6 @@ export async function createGraph(data, element) {
 
         // Highlight clicked node
         graph.setNodeAttribute(draggedNode, "highlighted", true);
-
-        // Removes the edge that connects the window node to the clicked tab node 
-        // This assumes that the clicked node was a tab node and had exactly one incoming edge
-        graph.findInEdge(draggedNode, (edge) => {
-            graph.dropEdge(edge);
-        });
     });
 
     // When the mouse is moved
@@ -128,17 +125,23 @@ export async function createGraph(data, element) {
         if (draggedNode) {
             // Unhighlight the node
             graph.removeNodeAttribute(draggedNode, "highlighted");
-
-            // Create a new edge from the closest window node to the dragged node
-            const newWinNode = getNearestWinNode(graph, draggedNode);
-            graph.addEdge(newWinNode, draggedNode);
-
-            // Reassign the tab to its new window
-            moveTabToWindow(draggedNode, newWinNode);
         }
 
         // Reset state info
         isDragging = false;
         draggedNode = null;
     });
+
+    // Chrome event listeners
+    chrome.tabs.onActivated.addListener(async (newActiveTabInfo) => {
+        graph.updateEdge(activeTab, newActiveTabInfo.tabId, attr => {
+            return {
+              ...attr,
+              size: Math.min((attr.size || 0) + 1, 15),
+              type: 'arrow'
+            };
+        });
+        
+        activeTab = newActiveTabInfo.tabId;
+    });    
 };
