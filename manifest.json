@@ -21,7 +21,7 @@
         }
     },
     "side_panel": {
-        "default_path": "src/chrome/map.html"
+        "default_path": "src/chrome/sidePanel.html"
     },
     "background": {
         "service_worker": "./src/chrome/service-worker.js"

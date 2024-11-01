@@ -11,4 +11,5 @@ const xml = generateGraphData(windows)
 const container = document.getElementById("container");
 
 // Render the graph with the desired data source in the specified element.
-document.addEventListener("DOMContentLoaded", async => createGraph(xml, container));
+// document.addEventListener("DOMContentLoaded", async => createGraph(xml, container));
+createGraph(xml, container);
