@@ -8,12 +8,12 @@ body {
     background-color: rgb(230, 230, 230);
 }
 
-#container {
+.container {
     display: flex;
     flex-direction: column;
     width: calc(100vw - 52px);
     height: calc(100vh - 52px);
-    background-color: rgb(229, 229, 229);
+    background-color: white;
     border: 1px solid black;
     box-sizing: border-box;
     padding: 20px;  
