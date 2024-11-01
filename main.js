@@ -7,8 +7,8 @@ const windows = await chrome.windows.getAll({ "populate": true });
 // Generate xml from chrome data: "windows"
 const xml = generateGraphData(windows)
 
-// Select container for the graph
+// Select html element to contain the graph.
 const container = document.getElementById("container");
 
-// Render the graph with desired data source in specified html element.
+// Render the graph with the desired data source in the specified element.
 document.addEventListener("DOMContentLoaded", async => createGraph(xml, container));

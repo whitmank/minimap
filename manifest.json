@@ -5,13 +5,26 @@
     "permissions": [
         "activeTab",
         "browsingData",
-        "windows"
+        "windows",
+        "sidePanel"
     ],
-    "chrome_url_overrides": {
-        "bookmarks": "/src/chrome/map.html"
+    "action": {
+        "default_title": "Click to open panel"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "mac": "MacCtrl+Z",
+                "linux": "Alt+Z",
+                "windows": "Alt+Z"
+            }
+        }
+    },
+    "side_panel": {
+        "default_path": "src/chrome/map.html"
     },
     "background": {
-        "service_worker": "./src/chrome/background.js"
+        "service_worker": "./src/chrome/service-worker.js"
     },
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'self'"
