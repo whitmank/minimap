@@ -6,5 +6,5 @@ chrome.sidePanel
   .catch((error) => console.error(error));
 
 chrome.commands.onCommand.addListener((command) => {
-    console.log(`Command: ${command}`);
-  });
+  console.log(`Command: ${command}`);
+});

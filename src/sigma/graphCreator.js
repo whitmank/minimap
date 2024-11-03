@@ -50,7 +50,7 @@ async function focusTab(tab) {
     await chrome.tabs.highlight({ tabs: tabIndex, windowId: winID });
 }
 
-export async function createGraph(data, element) {
+export async function createGraph(data) {
     // const windows = await chrome.windows.getAll({ "populate": true });
     // const xml = generateGraphData(windows);
 
@@ -61,87 +61,7 @@ export async function createGraph(data, element) {
     const layout = new ForceSupervisor(graph, {maxIterations: 5});
     layout.start();
 
-    // const container = document.getElementById("container");
-    // Create new Sigma instance (source graph, html container element to put it in)
-    const sigmaInstance = new Sigma(graph, element, { enablePanning: false });
+    console.log(graph);
 
-    
-    // Events
-    // [perhaps these should be moved?]
-
-    // State info
-    let draggedNode = null;
-    let isDragging = false;
-    // Defaults to whatever tab is currently active. If multiple windows, takes the first
-    const firstTab = await chrome.tabs.query({ active: true });
-    let activeTab = firstTab[0].id;
-
-    // When a node is double clicked 
-    // This does not override the single click [fix?]
-    sigmaInstance.on("doubleClickNode", async (event) => {
-        // Prevents default zooming 
-        event.preventSigmaDefault();
-
-        // Focuses the tab corresponding to the node that was double clicked
-        const tab = await nodeToTab(event.node);
-        await focusTab(tab);
-    });
-
-    // When a node is clicked 
-    sigmaInstance.on("downNode", (e) => {
-        // Freeze graph layout updates
-        layout.stop();
-
-        // Assign state info
-        isDragging = true;
-        draggedNode = e.node;
-
-        // Highlight clicked node
-        graph.setNodeAttribute(draggedNode, "highlighted", true);
-    });
-
-    // When the mouse is moved
-    sigmaInstance.getMouseCaptor().on("mousemovebody", (e) => {
-        // Do nothing if not in dragging state with well defined dragged node
-        if (!isDragging || !draggedNode) return;
-
-        // Translate mouse position to graph coordinates, and moved the dragged node there
-        const pos = sigmaInstance.viewportToGraph(e);
-        graph.setNodeAttribute(draggedNode, "x", pos.x);
-        graph.setNodeAttribute(draggedNode, "y", pos.y);
-
-        // Stop default panning behavior 
-        e.preventSigmaDefault();
-        e.original.preventDefault();
-        e.original.stopPropagation();
-    });
-
-    // When the mouse unclicks
-    sigmaInstance.getMouseCaptor().on("mouseup", () => {
-        // Resume graph layout updates
-        layout.start();
-
-        // If a node was being dragged
-        if (draggedNode) {
-            // Unhighlight the node
-            graph.removeNodeAttribute(draggedNode, "highlighted");
-        }
-
-        // Reset state info
-        isDragging = false;
-        draggedNode = null;
-    });
-
-    // Chrome event listeners
-    chrome.tabs.onActivated.addListener(async (newActiveTabInfo) => {
-        graph.updateEdge(activeTab, newActiveTabInfo.tabId, attr => {
-            return {
-              ...attr,
-              size: Math.min((attr.size || 0) + 1, 15),
-              type: 'arrow'
-            };
-        });
-        
-        activeTab = newActiveTabInfo.tabId;
-    });    
+    return graph;
 };
