@@ -1,10 +1,9 @@
-const GOOGLE_ORIGIN = 'https://www.google.com';
+import '/src/sigma/sw-sigma.js';
+import '/src/chrome/sw-chrome.js';
 
 // Allows users to open the side panel by clicking on the action toolbar icon
 chrome.sidePanel
   .setPanelBehavior({ openPanelOnActionClick: true })
   .catch((error) => console.error(error));
 
-chrome.commands.onCommand.addListener((command) => {
-  console.log(`Command: ${command}`);
-});
+  

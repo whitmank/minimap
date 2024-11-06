@@ -6,7 +6,9 @@
         "activeTab",
         "browsingData",
         "windows",
-        "sidePanel"
+        "sidePanel",
+        "tabs",
+        "storage"
     ],
     "action": {
         "default_title": "Click to open panel"
@@ -24,7 +26,8 @@
         "default_path": "src/chrome/sidePanel.html"
     },
     "background": {
-        "service_worker": "./src/chrome/service-worker.js"
+        "service_worker": "./dist/serviceWorker.bundle.js",
+        "type": "module"
     },
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'self'"
