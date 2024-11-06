@@ -24,7 +24,8 @@ export async function ensureGraph() {
             minimapGraph.importGraph(result[key]);
         } else {
             console.log('Graph not found in session storage. Initializing with current tabs at', new Date().toLocaleTimeString());
-            const tabs = await chrome.tabs.query({});
+            // For testing purposes, we want only the tabs in the current window
+            const tabs = await chrome.tabs.query({ windowId: chrome.windows.WINDOW_ID_CURRENT });
             minimapGraph.initializeWithTabs(tabs);
             await saveGraph(minimapGraph);
         }

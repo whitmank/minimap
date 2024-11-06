@@ -5,10 +5,17 @@ const NODE_MAX_DIST = 100;
 
 export class MinimapGraph {
     #graph = new Graph();
+    #activeTab = 0;
 
-    constructor(tabs) {
-        if (tabs !== undefined) {
-            this.initializeWithTabs(tabs);
+    constructor(tabs, activeTab) {
+        if (tabs === undefined) {
+            return;
+        }
+        
+        this.initializeWithTabs(tabs);
+
+        if (activeTab !== undefined) {
+            this.#activeTab = activeTab;
         }
     }
 
@@ -16,26 +23,21 @@ export class MinimapGraph {
         return this.#graph;
     }
 
+    set activeTab(tabId) {
+        this.#activeTab = tabId;
+    }
+
     initializeWithTabs(tabs) {
         for (const tab of tabs) {
-            this.#graph.addNode(tab.id,
-                {
-                    label: tab.title,
-                    url: tab.url,
-                    x: Math.random() * NODE_MAX_DIST,
-                    y: Math.random() * NODE_MAX_DIST,
-                    size: DEFAULT_NODE_SIZE
-                });
+            this.addTabNode(tab.id);
+            this.updateTabNode(tab.id, tab.title, tab.url);
         }
     }
 
     addTabNode(tabId) {
-        this.#graph.addNode(tabId,
-            {
-                x: Math.random() * NODE_MAX_DIST,
-                y: Math.random() * NODE_MAX_DIST,
-                size: DEFAULT_NODE_SIZE
-            });
+        const x = Math.random() * NODE_MAX_DIST;
+        const y = Math.random() * NODE_MAX_DIST;
+        this.addTabNodeAt(tabId, x, y);
     }
 
     addTabNodeAt(tabId, x, y) {
