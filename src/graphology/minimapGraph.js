@@ -74,4 +74,27 @@ export class MinimapGraph {
     hasNode(tabId) {
         return this.#graph.hasNode(tabId);
     }
+
+    hasEdge(from, to) {
+        return this.#graph.hasEdge(from, to);
+    }
+
+    addEdge(from, to) {
+        this.#graph.addEdge(from, to);
+    }
+
+    ensureEdge(from, to) {
+        if (!this.hasEdge(from, to) && !this.hasEdge(to, from)) {
+            this.addEdge(from, to);
+        }
+    }
+
+    clearEdge(from, to) {
+        if (this.hasEdge(from, to)) {
+            this.#graph.dropEdge(from, to);
+        }
+        if (this.hasEdge(to, from)) {
+            this.#graph.dropEdge(to, from);
+        }
+    }
 }
