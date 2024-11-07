@@ -97,4 +97,18 @@ export class MinimapGraph {
             this.#graph.dropEdge(to, from);
         }
     }
+
+    highlightNode(tabId) { 
+        this.#graph.mergeNodeAttributes(tabId, { highlighted: true });
+    }
+
+    unhighlightNode(tabId) {
+        this.#graph.removeNodeAttribute(tabId, 'highlighted');
+    }
+
+    clearAllHighlights() {
+        for (const node of this.#graph.nodes()) {
+            this.unhighlightNode(node);
+        }
+    }
 }

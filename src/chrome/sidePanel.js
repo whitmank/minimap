@@ -1,15 +1,14 @@
 console.log('sidePanel.js loaded at ' + new Date().toLocaleTimeString());
 
 import { Sigma } from 'sigma';
-import { UTILS, saveGraph, ensureGraph } from '/src/graphology/graphUtils.js';
-import ForceSupervisor from 'graphology-layout-force/worker';
-import { FSM } from '/src/sigma/fsm.js';
+import { FSM, UTILS, saveGraph, ensureGraph, focusTab } from '/src/graphology/graphUtils.js';
+import FA2 from 'graphology-layout-forceatlas2/worker';
 
 // Ensure the graph exists and is loaded into memory
 let minimapGraph = await ensureGraph();
 
 // Create and start the force layout worker for the graph
-const layout = new ForceSupervisor(minimapGraph.graph, { maxIterations: UTILS.FORCE_MAX_ITER });
+const layout = new FA2(minimapGraph.graph, { iterations: UTILS.FORCE_MAX_ITER , settings: {slowDown: 100, scalingRatio: 0.1, strongGravityMode: true } });
 layout.start();
 
 // Create a Sigma instance and render the graph
@@ -84,6 +83,7 @@ const machine = new FSM({
                     target: 'deleteNodeClicked',
                     action(node) {
                         FSM.selectedNode = node;
+                        minimapGraph.highlightNode(node);
                     },
                 }
             },
@@ -103,6 +103,7 @@ const machine = new FSM({
                     target: 'addNodeClicked',
                     action(node) {
                         FSM.selectedNode = node;
+                        minimapGraph.highlightNode(node);
                     },
                 }
             },
@@ -110,6 +111,7 @@ const machine = new FSM({
         addNodeClicked: {
             actions: {
                 onExit() {
+                    minimapGraph.clearAllHighlights();
                     FSM.selectedNode = null;
                 }
             },
@@ -131,6 +133,7 @@ const machine = new FSM({
         deleteNodeClicked: {
             actions: {
                 onExit() {
+                    minimapGraph.clearAllHighlights();
                     FSM.selectedNode = null;
                 }
             },
@@ -163,6 +166,11 @@ sigmaInstance.on('clickStage', (event) => {
 
 sigmaInstance.on('rightClickNode', (event) => {
     machine.transition('rightClickNode', event.node);
+});
+
+sigmaInstance.on('doubleClickNode', (event) => {
+    event.preventSigmaDefault();
+    focusTab(parseInt(event.node));
 });
 
 // JavaScript keypress event listeners
