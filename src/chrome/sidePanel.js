@@ -3,17 +3,17 @@ console.log('sidePanel.js loaded at ' + new Date().toLocaleTimeString());
 import { Sigma } from 'sigma';
 import { FSM, UTILS, saveGraph, ensureGraph, focusTab } from '/src/graphology/graphUtils.js';
 import FA2 from 'graphology-layout-forceatlas2/worker';
+import NoOverlap from 'graphology-layout-noverlap';
 
 // Ensure the graph exists and is loaded into memory
 let minimapGraph = await ensureGraph();
 
-// Create and start the force layout worker for the graph
-const layout = new FA2(minimapGraph.graph, { iterations: UTILS.FORCE_MAX_ITER , settings: {slowDown: 100, scalingRatio: 0.1, strongGravityMode: true } });
-layout.start();
+const layout = new NoOverlap(minimapGraph.graph, {maxIterations: UTILS.FORCE_MAX_ITER});
+NoOverlap.assign(minimapGraph.graph);
 
 // Create a Sigma instance and render the graph
 const container = document.getElementById("container");
-const sigmaInstance = new Sigma(minimapGraph.graph, container);
+const sigmaInstance = new Sigma(minimapGraph.graph, container, {labelDensity:100 });
 
 // Connect to the side panel port
 const port = chrome.runtime.connect({ name: UTILS.CHROME_SIDE_PANEL_PORT_NAME });
@@ -56,22 +56,25 @@ const machine = new FSM({
     initialState: 'idle', 
     states: {
         idle: {
-            actions: {
-
-            },
+            actions: {},
             transitions: {
                 deleteKey: {
                     target: 'deleteMode'
                 },
                 addKey: {
                     target: 'addMode'
+                },
+                downNode: {
+                    target: 'draggingNode',
+                    action(node) {
+                        FSM.draggingNode = node;
+                        minimapGraph.highlightNode(node);
+                    }
                 }
             },
         },
         deleteMode: {
-            actions: {
-
-            },
+            actions: {},
             transitions: {
                 deleteKey: {
                     target: 'idle'
@@ -88,10 +91,27 @@ const machine = new FSM({
                 }
             },
         },
-        addMode: {
-            actions: {
-
+        draggingNode: {
+            actions: {},
+            transitions: {
+                mouseMove: {
+                    target: 'draggingNode',
+                    action(event) {
+                        const pos = sigmaInstance.viewportToGraph(event);
+                        minimapGraph.updateTabNodePosition(FSM.draggingNode, pos.x, pos.y);
+                    }
+                },
+                mouseUp: {
+                    target: 'idle',
+                    action() {
+                        minimapGraph.unhighlightNode(FSM.draggingNode);
+                        FSM.draggingNode = null;
+                    }
+                }
             },
+        },
+        addMode: {
+            actions: {},
             transitions: {
                 deleteKey: {
                     target: 'deleteMode'
@@ -171,6 +191,21 @@ sigmaInstance.on('rightClickNode', (event) => {
 sigmaInstance.on('doubleClickNode', (event) => {
     event.preventSigmaDefault();
     focusTab(parseInt(event.node));
+});
+
+sigmaInstance.on('downNode', (event) => {
+    event.preventSigmaDefault();
+    machine.transition('downNode', event.node);
+});
+
+sigmaInstance.getMouseCaptor().on('mousemovebody', (event) => {
+    event.preventSigmaDefault();
+    machine.transition('mouseMove', event);
+});
+
+sigmaInstance.getMouseCaptor().on('mouseup', (event) => {
+    event.preventSigmaDefault();
+    machine.transition('mouseUp', event);
 });
 
 // JavaScript keypress event listeners

@@ -61,10 +61,10 @@ export async function focusTab(tabId) {
 
 export class FSM {
     static selectedNode = null;
+    static draggingNoe = null;
     constructor(config) {
         this.state = config.initialState;
         this.states = config.states;
-        this.selectedNode = null;
     }
 
     transition(event, ...args) {

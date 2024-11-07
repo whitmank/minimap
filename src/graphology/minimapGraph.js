@@ -2,6 +2,7 @@ import { Graph } from 'graphology';
 
 const DEFAULT_NODE_SIZE = 20;
 const NODE_MAX_DIST = 100;
+const TITLE_LEN = 30;
 
 export class MinimapGraph {
     #graph = new Graph();
@@ -57,8 +58,19 @@ export class MinimapGraph {
         this.#graph.updateNodeAttributes(tabId, attr => {
             return {
                 ...attr,
-                label: title,
+                label: title.length > TITLE_LEN ? title.substring(0, TITLE_LEN) + '...' : title,
+                title: title,
                 url: url,
+            };
+        });
+    }
+
+    updateTabNodePosition(tabId, x, y) {
+        this.#graph.updateNodeAttributes(tabId, attr => {
+            return {
+                ...attr,
+                x: x,
+                y: y,
             };
         });
     }
@@ -80,6 +92,9 @@ export class MinimapGraph {
     }
 
     addEdge(from, to) {
+        if(from === to) {
+            return;
+        }
         this.#graph.addEdge(from, to);
     }
 
@@ -99,11 +114,13 @@ export class MinimapGraph {
     }
 
     highlightNode(tabId) { 
-        this.#graph.mergeNodeAttributes(tabId, { highlighted: true });
+        const fullTitle = this.#graph.getNodeAttribute(tabId, 'title');
+        this.#graph.mergeNodeAttributes(tabId, { highlighted: true, label: fullTitle } );
     }
 
     unhighlightNode(tabId) {
-        this.#graph.removeNodeAttribute(tabId, 'highlighted');
+        const title = this.#graph.getNodeAttribute(tabId, 'title');
+        this.#graph.mergeNodeAttributes(tabId, { highlighted: false, label: title.length > TITLE_LEN ? title.substring(0, TITLE_LEN) + '...' : title});
     }
 
     clearAllHighlights() {
