@@ -62,6 +62,7 @@ export async function focusTab(tabId) {
 export class FSM {
     static selectedNode = null;
     static draggingNoe = null;
+    static preventMouseMoveDefault = false;
     constructor(config) {
         this.state = config.initialState;
         this.states = config.states;

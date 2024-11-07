@@ -8,12 +8,19 @@ import NoOverlap from 'graphology-layout-noverlap';
 // Ensure the graph exists and is loaded into memory
 let minimapGraph = await ensureGraph();
 
-const layout = new NoOverlap(minimapGraph.graph, {maxIterations: UTILS.FORCE_MAX_ITER});
+const layout = new NoOverlap(minimapGraph.graph, { maxIterations: UTILS.FORCE_MAX_ITER });
 NoOverlap.assign(minimapGraph.graph);
 
 // Create a Sigma instance and render the graph
 const container = document.getElementById("container");
-const sigmaInstance = new Sigma(minimapGraph.graph, container, {labelDensity:100 });
+const sigmaInstance = new Sigma(minimapGraph.graph, container,
+    {
+        labelDensity: 100,
+        autoRescale: false,
+        autoCenter: false,
+    }
+);
+// Disable camera movement
 
 // Connect to the side panel port
 const port = chrome.runtime.connect({ name: UTILS.CHROME_SIDE_PANEL_PORT_NAME });
@@ -51,12 +58,23 @@ setInterval(() => {
 
 
 
+const updateModeDisplay = (mode) => {
+    const modeDisplay = document.getElementById('mode-display');
+    if (modeDisplay) {
+        modeDisplay.textContent = `Mode: ${mode}`;
+    }
+};
+
 // Input handling with a Finite State Machine
 const machine = new FSM({
-    initialState: 'idle', 
+    initialState: 'idle',
     states: {
         idle: {
-            actions: {},
+            actions: {
+                onEnter() {
+                    updateModeDisplay('Idle');
+                }
+            },
             transitions: {
                 deleteKey: {
                     target: 'deleteMode'
@@ -74,7 +92,11 @@ const machine = new FSM({
             },
         },
         deleteMode: {
-            actions: {},
+            actions: {
+                onEnter() {
+                    updateModeDisplay('Delete');
+                }
+            },
             transitions: {
                 deleteKey: {
                     target: 'idle'
@@ -92,7 +114,21 @@ const machine = new FSM({
             },
         },
         draggingNode: {
-            actions: {},
+            actions: {
+                onEnter() {
+                    // This disables the camera as soon as we start dragging a node
+                    // I am not entirely sure how it works, it is from the storybook example
+                    // It is never reenabled. Only disabling it once we start dragging allows 
+                    // The camera to fit the graph to the viewport when we first load the sidePanel.
+                    if (!sigmaInstance.getCustomBBox()) sigmaInstance.setCustomBBox(sigmaInstance.getBBox());
+                    FSM.preventMouseMoveDefault = true;
+
+                    updateModeDisplay('Dragging');
+                },
+                onExit() {
+                    FSM.preventMouseMoveDefault = false;
+                }
+            },
             transitions: {
                 mouseMove: {
                     target: 'draggingNode',
@@ -111,7 +147,11 @@ const machine = new FSM({
             },
         },
         addMode: {
-            actions: {},
+            actions: {
+                onEnter() {
+                    updateModeDisplay('Add');
+                }
+            },
             transitions: {
                 deleteKey: {
                     target: 'deleteMode'
@@ -198,8 +238,14 @@ sigmaInstance.on('downNode', (event) => {
     machine.transition('downNode', event.node);
 });
 
-sigmaInstance.getMouseCaptor().on('mousemovebody', (event) => {
+sigmaInstance.on('doubleClickStage', (event) => {
     event.preventSigmaDefault();
+});
+
+sigmaInstance.getMouseCaptor().on('mousemovebody', (event) => {
+    if (FSM.preventMouseMoveDefault) {
+        event.preventSigmaDefault();
+    }
     machine.transition('mouseMove', event);
 });
 
