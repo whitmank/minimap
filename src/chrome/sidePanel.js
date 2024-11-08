@@ -5,25 +5,42 @@ import { FSM, UTILS, saveGraph, ensureGraph, focusTab } from '/src/graphology/gr
 import FA2 from 'graphology-layout-forceatlas2/worker';
 import NoOverlap from 'graphology-layout-noverlap';
 
-// Ensure the graph exists and is loaded into memory
-let minimapGraph = await ensureGraph();
+async function initializeSigmaToContainer(containerId) {
+    let minimapGraph = await ensureGraph();
 
-const layout = new NoOverlap(minimapGraph.graph, { maxIterations: UTILS.FORCE_MAX_ITER });
-NoOverlap.assign(minimapGraph.graph);
+    const layout = new NoOverlap(minimapGraph.graph, {
+        maxIterations: UTILS.FORCE_MAX_ITER,
+        settings: {
+            margin: 20,
+            expansion: 2
+        }
+    });
+    NoOverlap.assign(minimapGraph.graph);
 
-// Create a Sigma instance and render the graph
-const container = document.getElementById("container");
-const sigmaInstance = new Sigma(minimapGraph.graph, container,
-    {
+    const container = document.getElementById(containerId);
+    const sigmaInstance = new Sigma(minimapGraph.graph, container, {
         labelDensity: 100,
         autoRescale: false,
         autoCenter: false,
+    });
+
+    return { minimapGraph, sigmaInstance };
+}
+
+function updateModeDisplay (mode) {
+    const modeDisplay = document.getElementById('mode-display');
+    if (modeDisplay) {
+        modeDisplay.textContent = `Mode: ${mode}`;
     }
-);
-// Disable camera movement
+};
+
+const { minimapGraph, sigmaInstance } = await initializeSigmaToContainer('container');
 
 // Connect to the side panel port
 const port = chrome.runtime.connect({ name: UTILS.CHROME_SIDE_PANEL_PORT_NAME });
+port.onDisconnect.addListener(() => {
+    console.log('sw-chrome disconnected');
+});
 
 // Add event listeners to get messages from sw-chrome in order to
 // update the live graph in the side panel view. 
@@ -55,15 +72,6 @@ setInterval(() => {
     console.debug('sidePanel.js: Interval triggered, saving graph');
     saveGraph(minimapGraph);
 }, UTILS.SAVE_INTERVAL_MS);
-
-
-
-const updateModeDisplay = (mode) => {
-    const modeDisplay = document.getElementById('mode-display');
-    if (modeDisplay) {
-        modeDisplay.textContent = `Mode: ${mode}`;
-    }
-};
 
 // Input handling with a Finite State Machine
 const machine = new FSM({
@@ -262,5 +270,14 @@ document.addEventListener('keydown', (event) => {
     }
     if (event.key === 'a') {
         machine.transition('addKey', null);
+    }
+    if (event.key === 's') {
+        navigator.clipboard.writeText(JSON.stringify(minimapGraph.exportGraph()));
+    }
+    if (event.key === 'w') {
+        navigator.clipboard.readText().then((text) => {
+            minimapGraph.importGraph(JSON.parse(text));
+            saveGraph(minimapGraph);
+        });
     }
 });

@@ -8,7 +8,9 @@
         "windows",
         "sidePanel",
         "tabs",
-        "storage"
+        "storage",
+        "clipboardWrite",
+        "clipboardRead"
     ],
     "action": {
         "default_title": "Click to open panel"

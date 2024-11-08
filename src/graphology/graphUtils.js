@@ -5,7 +5,7 @@ export const UTILS = {
     DROP_NODE_ACTION_CODE: "dropNode",
     UPDATE_NODE_ACTION_CODE: "updateNode",
     SET_ACTIVE_TAB_ACTION_CODE: "setActiveTab",
-    FORCE_MAX_ITER: 5,
+    FORCE_MAX_ITER: 100,
     SAVE_INTERVAL_MS: 2000,
     HISTORY_MODE: true
 };
@@ -26,8 +26,9 @@ export async function ensureGraph() {
             minimapGraph.importGraph(result[key]);
         } else {
             console.debug('Graph not found in session storage. Initializing with current tabs at', new Date().toLocaleTimeString());
-            // For testing purposes, we want only the tabs in the current window
-            const tabs = await chrome.tabs.query({ windowId: chrome.windows.WINDOW_ID_CURRENT });
+            // // For testing purposes, we want only the tabs in the current window
+            // const tabs = await chrome.tabs.query({ windowId: chrome.windows.WINDOW_ID_CURRENT });
+            const tabs = await chrome.tabs.query({});
             minimapGraph.initializeWithTabs(tabs);
             await saveGraph(minimapGraph);
         }

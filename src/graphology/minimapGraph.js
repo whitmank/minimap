@@ -80,6 +80,7 @@ export class MinimapGraph {
     }
 
     importGraph(data) {
+        this.#graph.clear();
         this.#graph.import(data);
     }
 
