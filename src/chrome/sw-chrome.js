@@ -3,8 +3,15 @@ console.log('sw-chrome: sw-chrome.js loaded at ' + new Date().toLocaleTimeString
 import { UTILS, saveGraph, ensureGraph } from '/src/graphology/graphUtils.js';
 
 let port = null;
+// try {
+//     port = chrome.runtime.connect({ name: UTILS.CHROME_SIDE_PANEL_PORT_NAME });
+// } catch {
+//     console.error('sw-chrome: Could not connect to side panel port');
+// }
+// let port = chrome.runtime.connect({ name: UTILS.CHROME_SIDE_PANEL_PORT_NAME });
 let minimapGraph = await ensureGraph();
 console.log('sw-chrome: Initial graph loaded:', minimapGraph);
+// console.log('port:', port);
 
 // This function listens for the side panel port being opened
 // or closed, and sets the port variable accordingly.
@@ -13,12 +20,15 @@ chrome.runtime.onConnect.addListener((openedPort) => {
         port = openedPort;
         console.log('sw-chrome: Port connected:', port);
         port.onDisconnect.addListener(async () => {
-            console.log('sw-chrome: Port disconnected');
+            console.log('sidePanel.js disconnected from: ', port);
             port = null;
 
             // Reload the graph if the port is disconnected
             minimapGraph = await ensureGraph();
             console.log('sw-chrome: Graph reloaded after port disconnect:', minimapGraph);
+        });
+        port.onMessage.addListener(async (message) => {
+            console.log('sw-chrome: Message received:', message);
         });
     }
 });
