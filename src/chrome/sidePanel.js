@@ -35,18 +35,12 @@ function updateModeDisplay(mode) {
     }
 };
 
-function setUpPortListeners() {
-    chrome.runtime.onConnect.addListener((openedPort) => {
-        if (openedPort.name === UTILS.CHROME_SIDE_PANEL_PORT_NAME) {
-            console.log("side panel heard connection");
-        }
-    });
-    
-
+async function setUpPortListeners() {
     // Connect to the side panel port
     const port = chrome.runtime.connect({ name: UTILS.CHROME_SIDE_PANEL_PORT_NAME });
     port.onDisconnect.addListener(() => {
         console.log('sw-chrome disconnected');
+        window.close();
     });
 
     // Add event listeners to get messages from sw-chrome in order to
@@ -73,10 +67,6 @@ function setUpPortListeners() {
         saveGraph(minimapGraph);
         console.debug('sidePanel.js: Graph saved after message processing');
     });
-
-    setInterval(() => {
-        port.postMessage("ping");
-    }, 1000);
 }
 
 function setUpEventListeners() {
