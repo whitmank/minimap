@@ -57,7 +57,7 @@ async function setUpPortListeners() {
             console.log('sidePanel.js: Node removed', tabId);
         }
         if (message.action === UTILS.UPDATE_NODE_ACTION_CODE) {
-            minimapGraph.updateTabNode(tabId, message.title, message.url);
+            minimapGraph.updateTabNodeData(tabId, message.title, message.url);
             console.log('sidePanel.js: Node updated', tabId, message.title, message.url);
         }
         if (message.action === UTILS.SET_ACTIVE_TAB_ACTION_CODE) {
@@ -70,9 +70,16 @@ async function setUpPortListeners() {
 }
 
 function setUpEventListeners() {
+    sigmaInstance.on('rightClickNode', (event) => {
+        event.preventSigmaDefault();
+        event.event.original.preventDefault();
+        console.log('Node right clicked:', event);
+    });
+
     // Sigma Event Listeners
     sigmaInstance.on('clickNode', (event) => {
         machine.transition('clickNode', event.node);
+        console.log('Node clicked:', event);
     });
 
     sigmaInstance.on('clickStage', (event) => {
@@ -86,7 +93,19 @@ function setUpEventListeners() {
 
     sigmaInstance.on('downNode', (event) => {
         event.preventSigmaDefault();
-        machine.transition('downNode', event.node);
+        event.event.original.preventDefault();
+        if(event.event.original.button === 0) {
+            machine.transition('downNode', event.node);
+            console.log('Node down left click:', event);
+        }
+        if(event.event.original.button === 2) {
+            minimapGraph.removeTabNode(event.node);
+            if (event.event.original.shiftKey) {
+                chrome.tabs.remove(parseInt(event.node));
+                console.log('Tab removed:', event.node);
+            }
+            console.log('Node down right click:', event);
+        }
     });
 
     sigmaInstance.on('doubleClickStage', (event) => {
@@ -123,8 +142,22 @@ function setUpEventListeners() {
                 saveGraph(minimapGraph);
             });
         }
+        if (event.key == 'f') {
+            chrome.tabs.query({active: true}).then((tabs) => {
+                console.log(tabs);
+                const tab = tabs[0];
+                const tabId = tab.id;
+                const tabUrl = tab.url;
+                const tabTitle = tab.title;
+                minimapGraph.addTabNode(tabId);
+                minimapGraph.updateTabNodeData(tabId, tabTitle, tabUrl);
+            });
+        }
     });
 
+    document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+    });
 }
 
 function createStateMachine() {

@@ -62,7 +62,8 @@ export async function focusTab(tabId) {
 
 export class FSM {
     static selectedNode = null;
-    static draggingNoe = null;
+    // This field had a typo, yet that seemed to cause no issues...
+    static draggingNode = null;
     static preventMouseMoveDefault = false;
     constructor(config) {
         this.state = config.initialState;

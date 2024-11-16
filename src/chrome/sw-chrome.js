@@ -75,7 +75,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             return;
         }
         console.log('sw-chrome: Tab updated:', tabId, changeInfo, tab);
-        minimapGraph.updateTabNode(tabId, tab.title, tab.url);
+        minimapGraph.updateTabNodeData(tabId, tab.title, tab.url);
         await saveGraph(minimapGraph);
         console.debug('sw-chrome: Graph saved after tab update:', minimapGraph);
     });

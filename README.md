@@ -13,3 +13,12 @@ Bookmarks are dead. The primary goal of this application is to create an alterna
 On a higher level, the purpose of this tool is to visualize (content) space on the internet. Think about different "areas" of agit site like Youtube, or Instagram. It uses recommender feeds to navigate you to the content space it thinks will maximize your engagement (i.e. photography-gram, exercise-tube). The user should have more control in being able to navigate these spaces, not just gladly remain subject to the whims of the attention-maxxing algorithms.
 
 The only way to do this on popular social media sites now is to create a separate account for each type of content you want to see, then to manually train your taste profile on each account to only feed you that specific niche. There is a better way. Make your own algorithm.
+
+** Developer controls:
+* 'a' to toggle add mode. Click one node to highlight it, then click another to add an edge between them.
+* 'd' to toggle delete mode. Click one node to highlight it, then click another to delete an edge between them.
+* 'f' to spawn a node corresponding to your focused tab.
+* Double click nodes to focus the corresponding tab.
+* Right click nodes to delete the node. 
+* Shift right click to delete the corresponding tab too.
+* When not in add or delete mode, drag and drop to move nodes around.
