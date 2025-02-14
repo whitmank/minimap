@@ -1,0 +1,19 @@
+{
+  "tabs": [
+    {
+      "name": "A",
+      "title": "A - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/A"
+    },
+    {
+      "name": "B",
+      "title": "B - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/B"
+    },
+    {
+      "name": "C",
+      "title": "C - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/C"
+    }
+  ]
+}
