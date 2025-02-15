@@ -1,34 +1,45 @@
-import { forceSimulation, SimulationNodeDatum } from "d3-force";
-import { Tab } from "../App.tsx";
+import { useEffect, useState } from "react";
+import { forceSimulation, forceX, forceY} from "d3-force";
+import { CustomNode } from "../App.tsx";
 
 // Define prop type for Graph()
 interface GraphProps {
-  tabArray: Tab[];
+  nodeArray: CustomNode[];
 }
 
-// CustomNode == SimulationNodeDatum + Tab
-interface CustomNode extends SimulationNodeDatum, Tab {
-  // index: number;
-  // name: string;
-  // title: string;
-  // url: string;
-  // vx: number;
-  // vy: number;
-  // x: number;
-  // y: number;
-}
+// Expects a CustomNode[] as a prop
+function Graph({ nodeArray }: GraphProps) {
+  // COMPONENT STATE
+  const [nodes, setNodes] = useState<CustomNode[]>(nodeArray);
 
-function Graph({ tabArray }: GraphProps) {
-  // convert Tab[] prop to CustomNode[] for use in force simulation
-  const nodeArray: CustomNode[] = tabArray;
-  // Create force simulation with the CustomNode[]
-  const sim = forceSimulation(nodeArray);
-  console.log(sim.nodes());
+  // RERENDER LOGIC
+  useEffect(() => {
+    // INITIAL SIMULATION CONDITIONS
+    const simulation = forceSimulation(nodes)
+      .force("x", forceX(10))
+      .force("y", forceY(10))
+
+
+
+    simulation.on("tick", () => {
+      setNodes([...simulation.nodes()])
+    });
+
+    return () => { simulation.stop() }
+
+  }, [nodeArray]);
+
+  console.log(nodes)
 
   return (
     <svg className="canvas" viewBox="0 0 100 100">
-      {sim.nodes().map((tab) => (
-        <circle id={tab.name} key={tab.index} cx={tab.x} cy={tab.y} r="3" />
+      {nodes.map((node) => (
+        <circle
+          id={node.name}
+          key={node.index}
+          r="2"
+          cx={node.x}
+          cy={node.y} />
       ))}
     </svg>
   );
