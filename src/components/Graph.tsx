@@ -27,7 +27,6 @@ export default function Graph({ nodeArray }: GraphProps) {
     };
   }, [nodeArray]); //
 
-  console.log(nodes);
 
   // Render to DOM
   return (
@@ -36,7 +35,7 @@ export default function Graph({ nodeArray }: GraphProps) {
       {nodes.map((node) => (
         // Individual circles
         <circle
-          key={node.index} // Not being assigned for some reason?
+          key={node.name} // Not being assigned for some reason?
           id={node.name}
           r="2"
           cx={node.x}
