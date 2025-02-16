@@ -10,7 +10,7 @@ import {
 
 export function simConfig(simulation: Simulation<customNode, undefined>) {
   return simulation
-      // CONFIGURE SIM CONDITIONS HERE
+    // Configure initial simulation forces here.
       .force("x", forceX(50))
       .force("y", forceY(50))
       .force("center", forceCenter(50, 50))

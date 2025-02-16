@@ -1,5 +1,5 @@
 import Graph from "./components/Graph";
-import data from "./assets/abc.json";
+import data from "./assets/rhizome-tabs.json";
 import { SimulationNodeDatum } from "d3-force";
 
 // Interface for "Tab" object expected in the data file.
