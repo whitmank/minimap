@@ -1,0 +1,31 @@
+{
+  "name": "minimap",
+  "version": "0.1",
+  "manifest_version": 3,
+  "permissions": [
+    "browsingData",
+    "storage",
+    "windows",
+    "tabs",
+    "activeTab",
+    "sidePanel"
+  ],
+  "action": {
+    "default_title": "Click to open panel"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "linux": "Alt+M",
+        "mac": "MacCtrl+M",
+        "windows": "Alt+M"
+      }
+    }
+  },
+  "side_panel": {
+    "default_path": "./index.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,14 +1,13 @@
 import {
   forceCenter,
-  forceCollide,
   forceManyBody,
-  forceSimulation,
   forceX,
   forceY,
+  Simulation
 } from "d3-force";
+import { CustomNode } from "../App";
 
-
-export function simConfig(simulation: Simulation<customNode, undefined>) {
+export function simConfig(simulation: Simulation<CustomNode, undefined>) {
   return simulation
     // Configure initial simulation forces here.
       .force("x", forceX(50))
