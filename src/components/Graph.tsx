@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { CustomNode } from "../App.tsx";
+import { CustomNode } from "../components/sim_config.ts";
 import { forceSimulation } from "d3-force";
 import { simConfig } from "./sim_config.ts";
 
 // Define prop type for Graph()
 interface GraphProps {
-  nodeArray: CustomNode[];
+  initNodes: CustomNode[];
 }
 
 // Expects a CustomNode[] as a prop
-export default function Graph({ nodeArray }: GraphProps) {
+export default function Graph({ initNodes }: GraphProps) {
   // Component State
-  const [nodes, setNodes] = useState<CustomNode[]>(nodeArray);
+  const [nodes, setNodes] = useState<CustomNode[]>(initNodes);
 
   // Update the state every time nodeArray changes
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Graph({ nodeArray }: GraphProps) {
     return () => {
       simulation.stop();
     };
-  }, [nodeArray]); //
+  }, [initNodes]); //
 
 
   // Render to DOM

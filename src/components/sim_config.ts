@@ -1,15 +1,19 @@
+import { Tab } from "../browserData";
 import {
+  Simulation,
+  SimulationNodeDatum,
   forceCenter,
   forceManyBody,
   forceX,
   forceY,
-  Simulation
 } from "d3-force";
-import { CustomNode } from "../App";
 
+export interface CustomNode extends SimulationNodeDatum, Tab {}
+
+// Function to configure the initial simulation forces.
 export function simConfig(simulation: Simulation<CustomNode, undefined>) {
   return simulation
-    // Configure initial simulation forces here.
+    // Add forces here.
       .force("x", forceX(50))
       .force("y", forceY(50))
       .force("center", forceCenter(50, 50))
