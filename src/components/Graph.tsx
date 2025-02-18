@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CustomNode } from "../components/sim_config.ts";
 import { forceSimulation } from "d3-force";
 import { simConfig } from "./sim_config.ts";
+import '../styles/Graph.css'
 
 // Define prop type for Graph()
 interface GraphProps {
