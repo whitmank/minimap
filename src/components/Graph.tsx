@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CustomNode } from "../components/sim_config.ts";
 import { forceSimulation } from "d3-force";
 import { simConfig } from "./sim_config.ts";
-import '../styles/Graph.css'
+import "../styles/Graph.css";
 
 // Define prop type for Graph()
 interface GraphProps {
@@ -28,7 +28,6 @@ export default function Graph({ initNodes }: GraphProps) {
     };
   }, [initNodes]); //
 
-
   // Render to DOM
   return (
     // Parent SVG
@@ -36,7 +35,7 @@ export default function Graph({ initNodes }: GraphProps) {
       {nodes.map((node) => (
         // Individual circles
         <circle
-          key={node.name} // Not being assigned for some reason?
+          key={node.url} // Not being assigned for some reason?
           id={node.name}
           r="2"
           cx={node.x}

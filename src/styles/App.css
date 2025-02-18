@@ -1,0 +1,13 @@
+body {
+    border: 1px dotted blue;
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#root {
+    width: 95%;
+    height: 95%;
+}
