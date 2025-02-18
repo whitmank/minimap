@@ -1,37 +1,37 @@
 {
-    "manifest_version": 3,
-    "name": "minimap-indev",
-    "version": "1.0",
-    "permissions": [
-        "activeTab",
-        "browsingData",
-        "windows",
-        "sidePanel",
-        "tabs",
-        "storage",
-        "clipboardWrite",
-        "clipboardRead"
-    ],
-    "action": {
-        "default_title": "Click to open panel"
-    },
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "mac": "MacCtrl+Z",
-                "linux": "Alt+Z",
-                "windows": "Alt+Z"
-            }
-        }
-    },
-    "side_panel": {
-        "default_path": "src/chrome/sidePanel.html"
-    },
-    "background": {
-        "service_worker": "./dist/serviceWorker.bundle.js",
-        "type": "module"
-    },
-    "content_security_policy": {
-        "extension_pages": "script-src 'self'; object-src 'self'"
+  "name": "minimap",
+  "version": "0.1",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "browsingData",
+    "windows",
+    "sidePanel",
+    "tabs",
+    "storage",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "action": {
+    "default_title": "Click to open panel"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "mac": "MacCtrl+M",
+        "linux": "Alt+M",
+        "windows": "Alt+M"
+      }
     }
+  },
+  "side_panel": {
+    "default_path": "src/chrome/sidePanel.html"
+  },
+  "background": {
+    "service_worker": "./dist/serviceWorker.bundle.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
