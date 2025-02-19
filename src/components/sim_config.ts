@@ -1,14 +1,11 @@
-import { CustomTab } from "../browserData";
+import { CustomNode } from "../interfaces.ts";
 import {
   Simulation,
-  SimulationNodeDatum,
   forceCenter,
   forceManyBody,
   forceX,
   forceY,
 } from "d3-force";
-
-export interface CustomNode extends SimulationNodeDatum, CustomTab {}
 
 // Function to configure the initial simulation forces.
 export function simConfig(simulation: Simulation<CustomNode, undefined>) {

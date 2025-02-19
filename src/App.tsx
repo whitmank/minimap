@@ -1,11 +1,10 @@
-import Graph from "./components/Graph";
-import { tabs } from "./browserData";
 import "./styles/App.css";
+import Graph from "./components/Graph";
 
 function App() {
   return (
     <>
-      <Graph initNodes={tabs} />
+      <Graph />
     </>
   );
 }
