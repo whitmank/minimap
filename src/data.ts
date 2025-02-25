@@ -1,7 +1,13 @@
-import { CustomTab } from "./interfaces";
-// CHROME DATA
+import { CustomTab, Page } from "./interfaces";
 
-// Gets a list of tabs in the active window.
+// TEST DATA
+export async function getTestPages() {
+  const pageArray: Page[] = (await import("./test_data/rhizome-tabs.json"))
+    .nodes;
+  return pageArray;
+}
+
+// CHROME DATA
 export async function getChromeTabs() {
   const tabArray: CustomTab[] = [];
   const currentWindow = await chrome.windows.getCurrent({ populate: true });
@@ -9,6 +15,7 @@ export async function getChromeTabs() {
 
   currentTabs.forEach((tab) => {
     const customTab: CustomTab = {
+      uuid: "none",
       tabId: tab.id!,
       tabIndex: tab.index!,
       name: "empty"!,
