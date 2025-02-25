@@ -5,13 +5,15 @@ import { CustomTab } from "./interfaces";
 export async function getChromeTabs() {
   const tabArray: CustomTab[] = [];
   const currentWindow = await chrome.windows.getCurrent({ populate: true });
-  const currentTabs = currentWindow.tabs;
+  const currentTabs = currentWindow.tabs!;
 
   currentTabs.forEach((tab) => {
     const customTab: CustomTab = {
-      name: "empty",
-      title: tab.title,
-      url: tab.url,
+      tabId: tab.id!,
+      tabIndex: tab.index!,
+      name: "empty"!,
+      title: tab.title!,
+      url: tab.url!,
     };
     tabArray.push(customTab);
   });

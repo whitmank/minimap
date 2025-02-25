@@ -2,6 +2,8 @@ import { SimulationNodeDatum } from "d3-force";
 
 // Tab from Chrome
 export interface CustomTab {
+  tabId: number;
+  tabIndex: number;
   name: string;
   title: string;
   url: string;
