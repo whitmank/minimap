@@ -1,12 +1,12 @@
-import { CustomNode } from "./interfaces.ts";
 import {
-  Simulation,
   forceCenter,
   forceManyBody,
   forceSimulation,
   forceX,
   forceY,
 } from "d3-force";
+
+import { CustomNode } from "./schemas";
 
 // Function to configure the initial simulation forces.
 export function initSim(nodes: CustomNode[]) {

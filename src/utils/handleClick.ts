@@ -1,3 +1,3 @@
-export function handleNodeClick(tabIndex: number) {
+export function goToTab(tabIndex: number) {
   chrome.tabs.highlight({ tabs: tabIndex });
 }

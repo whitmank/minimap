@@ -1,43 +1,61 @@
 {
-  "nodes": [
+  "objs": [
     {
       "uuid": "1",
-      "name": "Kowloon Walled City",
-      "title": "The Densest City In The World Had a Strange Secret... - YouTube",
-      "url": "https://www.youtube.com/watch?v=hoNclh1K_zY"
+      "content_type": "Page",
+      "content": {
+        "name": "Kowloon Walled City",
+        "title": "The Densest City In The World Had a Strange Secret... - YouTube",
+        "url": "https://www.youtube.com/watch?v=hoNclh1K_zY"
+      }
     },
     {
       "uuid": "2",
-      "name": "Rhizome Theory",
-      "title": "Rhizome (philosophy) - Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Rhizome_(philosophy)"
+      "content_type": "Page",
+      "content": {
+        "name": "Rhizome Theory",
+        "title": "Rhizome (philosophy) - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Rhizome_(philosophy)"
+      }
     },
     {
       "uuid": "3",
-      "name": "Deleuze & Guattari",
-      "title": "Deleuze and Guattari - Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Deleuze_and_Guattari"
+      "content_type": "Page",
+      "content": {
+        "name": "Deleuze & Guattari",
+        "title": "Deleuze and Guattari - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Deleuze_and_Guattari"
+      }
     },
     {
       "uuid": "4",
-      "name": "Concept Mapping",
-      "title": "Concept Mapping in the Age of Deleuze: Fresh Perspectives and New Challenges",
-      "url": "https://files.eric.ed.gov/fulltext/EJ1250497.pdf"
+      "content_type": "Page",
+      "content": {
+        "name": "Concept Mapping",
+        "title": "Concept Mapping in the Age of Deleuze: Fresh Perspectives and New Challenges",
+        "url": "https://files.eric.ed.gov/fulltext/EJ1250497.pdf"
+      }
     },
     {
       "uuid": "5",
-      "name": "A Thousand Plateaus",
-      "title": "Deleuze & Guattari's A Thousand Plateaus - YouTube",
-      "url": "https://www.youtube.com/playlist?list=PL45CC899A2941BF33"
+      "content_type": "Page",
+      "content": {
+        "name": "A Thousand Plateaus",
+        "title": "Deleuze & Guattari's A Thousand Plateaus - YouTube",
+        "url": "https://www.youtube.com/playlist?list=PL45CC899A2941BF33"
+      }
     },
     {
       "uuid": "6",
-      "name": "Rhizome Proposal",
-      "title": "Rhizome Proposal",
-      "url": "https://jzhao.xyz/thoughts/Rhizome-Proposal"
+      "content_type": "Page",
+      "content": {
+        "name": "Rhizome Proposal",
+        "title": "Rhizome Proposal",
+        "url": "https://jzhao.xyz/thoughts/Rhizome-Proposal"
+      }
     }
   ],
-  "edges": [
+  "rels": [
     { "source": "1", "target": "2", "strength": 1 },
     { "source": "2", "target": "3", "strength": 1 },
     { "source": "2", "target": "6", "strength": 1 },
