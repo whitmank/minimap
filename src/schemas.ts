@@ -1,22 +1,46 @@
+// ----------------------------------------------------------------------
 // GRAPH PRIMITIVES
-export type dataObj = {
+export type GraphData = {
+  objs: Obj[];
+  rels: Rel[];
+};
+
+export type Obj = {
   uuid: string;
   content_type: string;
   content: any;
-  forceData: SimulationNodeDatum;
 };
 
-// export type Rel = {
-//   source: string;
-//   target: string;
-//   strength: number;
-// };
+export type Rel = {
+  source: string;
+  target: string;
+  strength: number;
+};
 
-// export type GraphData = {
-//   objects: Obj[];
-//   relationships: Rel[];
-// };
+//----------------------------------------------------------------------
+// SIMULATION
+// Everything is a node:
+// Node => (Page) + (Tab) + (SimNode)
 
+import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
+
+export interface SimData {
+  nodes: CustomNode[];
+  edges: CustomEdge[];
+}
+
+export interface CustomNode
+  extends SimulationNodeDatum,
+    Partial<Obj>,
+    Partial<Page> {}
+
+export interface CustomEdge extends SimulationLinkDatum<CustomNode> {
+  source: string;
+  target: string;
+  strength: number;
+}
+
+//----------------------------------------------------------------------
 // A WEBPAGE
 export type Page = {
   name: string; // Default = title // For custom renaming.
@@ -25,22 +49,7 @@ export type Page = {
 };
 
 // BROWSER TAB - CHROME
-export type CustomTab = Page & {
-  tabId: number;
-  tabIndex: number;
-};
-
-// SIMULATION
-import { SimulationNodeDatum } from "d3-force";
-
-export interface CustomNode
-  extends SimulationNodeDatum,
-    Partial<dataObj>,
-    Partial<Page>,
-    Partial<CustomTab> {}
-
-// interface CustomLink extends SimulationLinkDatum<CustomNode> {
-//   source: string;
-//   target: string;
-//   strength: number;
-// }
+// export type CustomTab = {
+//   tabId: number;
+//   tabIndex: number;
+// };

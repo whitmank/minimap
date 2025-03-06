@@ -1,11 +1,14 @@
-import { dataObj } from "./schemas";
+import { GraphData } from "./schemas";
 
 // TEST DATA
 
 export async function getTestData() {
-  const data: dataObj[] = (await import("./test_data/rhizome-tabs.json")).objs;
-  console.log(data);
-  return data;
+  const data = await import("./test_data/abc.json");
+  const graphData: GraphData = {
+    objs: data.objs,
+    rels: data.rels,
+  };
+  return graphData;
 }
 
 // // CHROME DATA

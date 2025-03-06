@@ -1,54 +1,57 @@
-// REACT
 import "./styles/App.css";
+// REACT
 import Graph from "./components/Graph";
 import { useEffect, useState } from "react";
-// DATA HANDLING
+// DATA
 import { getTestData } from "./dataHandling.ts";
 // SIMULATION
 import { initSim } from "./simulation.ts";
-import { SimulationNodeDatum } from "d3-force";
+import { GraphData, SimData } from "./schemas.ts";
 
 // APPLICATION
 function App() {
-  // Set initial component state
-  const [nodes, setNodes] = useState<SimulationNodeDatum[]>([]);
+  // DB DATA
+  const [data, setData] = useState<GraphData>({ objs: [], rels: [] });
+  // SIMULATION DATA
+  const [simState, setSimState] = useState<SimData>({ nodes: [], edges: [] });
 
-  // Get data and set state.
+  // Set initial data.
   useEffect(() => {
-    const DATA = getTestData();
     (async () => {
-      const initNodes = await DATA;
-
-      setNodes(initNodes);
+      const DATA = await getTestData();
+      setData(DATA);
     })();
   }, []);
-
-  // Update the state every time 'nodes' changes
+  //DEPENDENCY ARRAY TROUBLE
   useEffect(() => {
-    const simulation = initSim(nodes);
+    setSimState({ nodes: data.objs, edges: data.rels });
+    console.log(simState);
+  }, []);
+
+  // Make mutable copy of data and use it to set the Sim State, stead of setting directly from data.objs and data.rels
+
+  // SIMULATION
+  useEffect(() => {
+    const simulation = initSim(simState.nodes, simState.edges);
+    // Update the state every time 'nodes' changes
     simulation.on("tick", () => {
-      setNodes([...simulation.nodes()]);
+      setSimState({
+        nodes: [...simulation.nodes()],
+        edges: simState.edges,
+      });
     });
-    // Stop sim??
+
     return () => {
       simulation.stop();
     };
-  }, [nodes]); //
+  }, [simState]); //
 
+  // COMPONENT
   return (
     <>
-      <Graph nodes={nodes} />
+      <Graph {...simState} />
     </>
   );
 }
 
 export default App;
-
-/* TODO:
-
-Implement edges!
-Everything is a node:
-Node => (Page) + (Tab) + (SimNode)
-
-props to pass to Graph = {nodes: node[], edges: edge[]}
-*/
