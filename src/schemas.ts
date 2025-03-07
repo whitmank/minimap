@@ -22,22 +22,24 @@ export type Rel = {
 // Everything is a node:
 // Node => (Page) + (Tab) + (SimNode)
 
-import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
+import { Simulation, SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
 
 export interface SimData {
-  nodes: CustomNode[];
-  edges: CustomEdge[];
+  nodes: Node[];
+  edges: Edge[];
 }
 
-export interface CustomNode
-  extends SimulationNodeDatum,
-    Partial<Obj>,
-    Partial<Page> {}
+export interface Node
+  extends SimulationNodeDatum, Partial<Obj>, Partial<Page> {}
 
-export interface CustomEdge extends SimulationLinkDatum<CustomNode> {
+export interface Edge extends SimulationLinkDatum<Node> {
   source: string;
   target: string;
   strength: number;
+}
+
+export interface CustomSimulation extends Simulation<Node, Edge> {
+  updateData: (newNodes: Node[], newEdges: Edge[]) => void;
 }
 
 //----------------------------------------------------------------------
