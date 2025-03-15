@@ -3,7 +3,7 @@ import { GraphData } from "./schemas";
 // TEST DATA
 
 export async function getTestData() {
-  const data = await import("./test_data/abc.json");
+  const data = await import("./test_data/rhizome-tabs.json");
   const graphData: GraphData = {
     objs: data.objs,
     rels: data.rels,

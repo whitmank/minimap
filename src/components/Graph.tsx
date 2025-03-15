@@ -6,6 +6,23 @@ export default function Graph(sim: SimData) {
   const [nodes, edges] = [sim.nodes, sim.edges];
   return (
     <svg className="canvas" viewBox="0 0 100 100">
+      {/* RENDER NODES */}
+
+      {edges.map((edge) => {
+        const { source, target } = edge;
+        const edgeSource = source as Node;
+        const edgeTarget = target as Node;
+        return (
+          <line className="edge"
+            strokeWidth="1"
+            strokeOpacity="1"
+            x1={edgeSource.x}
+            y1={edgeSource.y}
+            x2={edgeTarget.x}
+            y2={edgeTarget.y}
+          />
+        );
+      })}
       {nodes.map((node) => {
         return (
           // Individual circles

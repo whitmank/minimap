@@ -52,6 +52,7 @@ function App() {
     } else {
       // Update the simulation with new data, without restarting it.
       simulationRef.current.updateData(simData.nodes, simData.edges);
+      console.log(simData)
     }
 
     return () => {

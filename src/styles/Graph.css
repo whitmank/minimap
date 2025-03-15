@@ -9,4 +9,9 @@
 
 .node {
     fill: #857d7d;
+    border: black;
+}
+
+.edge {
+    stroke: #857d7d;
 }
