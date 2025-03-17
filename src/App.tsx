@@ -3,7 +3,7 @@ import "./styles/App.css";
 import Graph from "./components/Graph";
 import { useEffect, useState, useRef } from "react";
 // DATA
-import { getTestData } from "./dataHandling.ts";
+import { getChromeTabs, getTestData } from "./dataHandling.ts";
 // SIMULATION
 import { initSim } from "./simulation.ts";
 import { CustomSimulation, GraphData, SimData } from "./schemas.ts";
@@ -19,7 +19,7 @@ function App() {
   // Load initial data
   useEffect(() => {
     (async () => {
-      const DATA = await getTestData();
+      const DATA = await getChromeTabs();
       setData(DATA);
     })();
   }, []);

@@ -30,7 +30,7 @@ export interface SimData {
 }
 
 export interface Node
-  extends SimulationNodeDatum, Partial<Obj>, Partial<Page> {}
+  extends SimulationNodeDatum, Partial<Obj>, Partial<Page>, Partial<Tab>{}
 
 export interface Edge extends SimulationLinkDatum<Node> {
   source: string;
@@ -51,7 +51,7 @@ export type Page = {
 };
 
 // BROWSER TAB - CHROME
-// export type CustomTab = {
-//   tabId: number;
-//   tabIndex: number;
-// };
+export type Tab = Page & {
+  tabId: number;
+  tabIndex: number;
+};

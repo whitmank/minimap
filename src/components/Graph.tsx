@@ -1,5 +1,5 @@
 import "../styles/Graph.css";
-// import { goToTab } from "../utils/handleClick.ts";
+import { goToTab } from "../utils/handleClick.ts";
 import { SimData } from "../schemas.ts";
 
 export default function Graph(sim: SimData) {
@@ -29,12 +29,12 @@ export default function Graph(sim: SimData) {
           <g key={node.uuid}>
             <circle
               className="node"
-              // onClick={() => {
-              //   // if node is an active tab
-              //   if (node.tabId && node.tabIndex) {
-              //     goToTab(node.tabIndex!);
-              //   }
-              // }}
+              onClick={() => {
+                // if node is an active tab
+                if (node.content.tabId && node.content.tabIndex) {
+                  goToTab(node.content.tabIndex!);
+                }
+              }}
               id={node.uuid}
               r="3"
               cx={node.x}
