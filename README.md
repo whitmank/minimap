@@ -8,21 +8,26 @@
 This is a tool that lets you visualize pages on the web and the relationships between them using network diagrams.
 
 It's a map you can use while browsing.
-By plotting important pages, and drawing connections between them, you can actively build your own mental map of the web that you inhabit.
+By plotting pages, and drawing connections between them, you can actively build your own mental map of the web that you inhabit.
 
 This tool is a map for digital space, and it serves the same purpose as a map of our terrestrial world: an aid for navigating, exploring, and understanding the world.
 
 It's for mapping clusters of information, grouping concepts together, in a way that the linear/hierarchical nature of bookmarks and folders do not allow.
 
 ### Features
-- List of features
-- more features
-- so many features
+- Live Graph View: Visualize your open tabs and windows
+- Personal Graph View: Save pages to your
+- More to come!
+  - In the future I plan to add the ability to share your graphs with other people, much like you would share an ordinary hyperlink.
 
-### Technology
-This app uses the [d3-force library](https://github.com/d3/d3-force) to simulate the forces and positions of nodes and edges.
-This information (and the rest of the interface) is rendered with React.
+### Technologies:
+This app uses the [d3-force](https://d3js.org/d3-force) library to simulate positions of nodes and edges, and the forces acting on them.
+
+This simulation (and the rest of the interface) is rendered with [React](https://2019.wattenberger.com/blog/react-and-d3).
+
 Saved pages, and the links you draw between them, are stored using [SurrealDB](https://surrealdb.com/docs/surrealdb).
+
+The app runs as a browser extension, enabling it to interact with active tabs, and to display the interface within the browser. I'm developing with Chrome, though I hope to support other browsers in the future.
 
 ### Why am I making this?
 Navigating the internet is hard (and it makes my head hurt).
