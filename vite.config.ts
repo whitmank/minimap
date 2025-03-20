@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: "./index.html",
+        index: "./src/index.html",
         manifest: "./public/manifest.json",
         service_worker: "./public/service-worker.js",
       },

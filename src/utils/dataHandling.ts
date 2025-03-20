@@ -1,9 +1,9 @@
-import { GraphData, Obj } from "./schemas";
+import { GraphData, Obj } from "../App/schemas";
 
 // TEST DATA
 
 export async function getTestData() {
-  const data = await import("./test_data/rhizome-tabs.json");
+  const data = await import("../test_data/rhizome-tabs.json");
   const graphData: GraphData = {
     objs: data.objs,
     rels: data.rels,

@@ -14,8 +14,8 @@ export default function Graph(sim: SimData) {
         const edgeTarget = target as Node;
         return (
           <line className="edge"
-            strokeWidth="1"
-            strokeOpacity="1"
+            strokeWidth="0.5"
+            strokeOpacity="0.5"
             x1={edgeSource.x}
             y1={edgeSource.y}
             x2={edgeTarget.x}
@@ -36,7 +36,7 @@ export default function Graph(sim: SimData) {
                 }
               }}
               id={node.uuid}
-              r="3"
+              r="2"
               cx={node.x}
               cy={node.y}
             />

@@ -1,9 +1,9 @@
-import "./styles/App.css";
+import "../styles/App.css";
 // REACT
-import Graph from "./components/Graph";
+import Graph from "../components/Graph.tsx";
 import { useEffect, useState, useRef } from "react";
 // DATA
-import { getChromeTabs, getTestData } from "./dataHandling.ts";
+import { getChromeTabs, getTestData } from "../utils/dataHandling.ts";
 // SIMULATION
 import { initSim } from "./simulation.ts";
 import { CustomSimulation, GraphData, SimData } from "./schemas.ts";
@@ -19,7 +19,7 @@ function App() {
   // Load initial data
   useEffect(() => {
     (async () => {
-      const DATA = await getChromeTabs();
+      const DATA = await getTestData();
       setData(DATA);
     })();
   }, []);
