@@ -8,7 +8,7 @@
 This is a tool that lets you visualize pages on the web and the relationships between them using network diagrams.
 
 It's a map you can use while browsing.
-By plotting important pages (like landmarks), and drawing connections between them, you can actively build your own mental map of the web that you inhabit.
+By plotting important pages, and drawing connections between them, you can actively build your own mental map of the web that you inhabit.
 
 This tool is a map for digital space, and it serves the same purpose as a map of our terrestrial world: an aid for navigating, exploring, and understanding the world.
 
@@ -19,6 +19,10 @@ It's for mapping clusters of information, grouping concepts together, in a way t
 - more features
 - so many features
 
+### Technology
+This app uses the [d3-force library](https://github.com/d3/d3-force) to simulate the forces and positions of nodes and edges.
+This information (and the rest of the interface) is rendered with React.
+Saved pages, and the links you draw between them, are stored using [SurrealDB](https://surrealdb.com/docs/surrealdb).
 
 ### Why am I making this?
 Navigating the internet is hard (and it makes my head hurt).
