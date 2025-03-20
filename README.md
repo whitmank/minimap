@@ -29,4 +29,4 @@ complexity lies in more dimensions than we're able to process at once.
 
 ### Features
 
-![screenshot](assets/example1.png)
+![screenshot](/assets/example1.png)
