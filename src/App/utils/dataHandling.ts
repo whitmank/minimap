@@ -1,7 +1,16 @@
 import { GraphData, Obj } from "../schemas";
 
-// TEST DATA
 
+// DATABASE
+export async function loadData() {
+  const graphData: GraphData = {
+    objs: [],
+    rels: [],
+  }
+  return graphData;
+}
+
+// TEST DATA
 export async function getTestData() {
   const data = await import("../../test_data/rhizome-tabs.json");
   const graphData: GraphData = {
