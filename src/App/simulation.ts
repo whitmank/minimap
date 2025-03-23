@@ -15,7 +15,7 @@ import { Node, Edge } from "./schemas";
 export function initSim(nodes: Node[], edges: Edge[]): CustomSimulation {
 
   const simulation = forceSimulation<Node, Edge>(nodes)
-    .force("link", forceLink(edges).id((node) => hasUuid(node) ? node.uuid! : ""))
+    .force("link", forceLink(edges).id ((node) => hasUuid(node) ? node.uuid! : ""))
     .force("x", forceX(50))
     .force("y", forceY(50))
     .force("center", forceCenter(50, 50))

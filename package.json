@@ -10,15 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@surrealdb/node": "^1.0.0-beta.3",
+    "@surrealdb/wasm": "^1.2.0",
     "@types/d3-force": "^3.0.10",
     "d3-force": "^3.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "surrealdb": "^1.2.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@types/chrome": "^0.0.304",
     "@types/css-modules": "^1.0.5",
+    "@types/node": "^22.13.11",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",

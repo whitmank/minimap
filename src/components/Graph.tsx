@@ -1,6 +1,8 @@
 import "../styles/Graph.css";
-import { goToTab } from "../utils/handleClick.ts";
-import { SimData } from "../schemas.ts";
+import { goToTab } from "../App/utils/handleClick.ts";
+import { SimData } from "../App/schemas.ts";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function Graph(sim: SimData) {
   const [nodes, edges] = [sim.nodes, sim.edges];
@@ -14,6 +16,7 @@ export default function Graph(sim: SimData) {
         const edgeTarget = target as Node;
         return (
           <line className="edge"
+            key={uuidv4()}
             strokeWidth="0.5"
             strokeOpacity="0.5"
             x1={edgeSource.x}
@@ -26,7 +29,7 @@ export default function Graph(sim: SimData) {
       {nodes.map((node) => {
         return (
           // Individual circles
-          <g key={node.uuid}>
+          <g key={uuidv4()}>
             <circle
               className="node"
               onClick={() => {
