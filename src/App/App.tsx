@@ -3,15 +3,14 @@ import "../styles/App.css";
 import Graph from "../components/Graph.tsx";
 import { useEffect, useState, useRef } from "react";
 // DATA
-import { getDb } from "./surreal.ts";
-import { getChromeTabs, getTestData } from "./utils/dataHandling.ts";
+
+import { getTestData } from "./utils/dataHandling.ts";
 // SIMULATION
 import { initSim } from "./simulation.ts";
 import { CustomSimulation, GraphData, SimData } from "./schemas.ts";
 
 function App() {
   // LOAD DATABASE
-  getDb();
   // DB DATA
   const [data, setData] = useState<GraphData>({ objs: [], rels: [] });
   // SIMULATION DATA
@@ -55,7 +54,7 @@ function App() {
       });
     } else {
       // Update the simulation with new data, without restarting it.
-      // simulationRef.current.updateData(simData.nodes, simData.edges);
+      simulationRef.current.updateData(simData.nodes, simData.edges);
       return
     }
 
